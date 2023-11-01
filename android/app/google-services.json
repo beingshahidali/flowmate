@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "193865604929",
+    "project_id": "flowwmate",
+    "storage_bucket": "flowwmate.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:193865604929:android:412ee77c979fbf08facbc0",
+        "android_client_info": {
+          "package_name": "com.example.flowwmate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFNZL9QV52AoT1VFt6ETHGHPYHuZlotR4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
