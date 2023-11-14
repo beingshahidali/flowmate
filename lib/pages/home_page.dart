@@ -1,4 +1,6 @@
 
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flowwmate/pages/chat_page.dart';
@@ -27,7 +29,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Page'),
+        backgroundColor: Colors.cyan,
+        title: Text('Message'),
         actions: [
           IconButton(onPressed: signOut, icon: Icon(Icons.logout))
         ],
@@ -47,6 +50,7 @@ class _HomePageState extends State<HomePage> {
             return const Text('loading..');
           }
           return ListView(
+
             children: snapshot.data!.docs
                 .map<Widget>((doc) => _buildUserListItem(doc))
                 .toList(),
@@ -57,17 +61,71 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildUserListItem(DocumentSnapshot document) {
     Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
+    int randomImageNumber = Random().nextInt(5) + 1;
 // display all users except current user
     if (_auth.currentUser!.email != data['email']) {
-      return ListTile(
-        title: Text(data['email']),
-        onTap: () {
-// pass the clicked user's UID to the chat page
-          Navigator.push(context, MaterialPageRoute(builder: (context) =>
-              ChatPage(receiverUserEmail: data['email'],
-                  receiverUserID: data['uid'])),);
-        },
-      );
+      return Padding(
+        padding: const EdgeInsets.fromLTRB(40,10,40,5),
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(width: 5,color: Colors.cyan.shade200),
+              top: BorderSide(width: 1.5, color: Colors.cyan.shade200),
+              right: BorderSide(width: 1.5, color: Colors.cyan.shade200),
+              left: BorderSide(width: 1.5, color: Colors.cyan.shade200),
+            ),
+            borderRadius: BorderRadius.circular(10)
+          ),
+          child: ListTile(
+            leading:  CircleAvatar(
+              radius: 50, // Set the desired radius for your circle
+              backgroundImage: AssetImage('images/$randomImageNumber.jpeg'),
+            ),
+
+
+
+            tileColor: Colors.white,
+            title: Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Column(
+                children: [
+
+                  Text(
+                    data['name'],
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    data['email'],
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.grey,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            onTap: () {
+              // pass the clicked user's UID to the chat page
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ChatPage(
+                    receiverName: data["name"],
+                    receiverUserEmail: data['email'],
+                    receiverUserID: data['uid'],
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      )
+      ;
     }
     else
       return Container();
