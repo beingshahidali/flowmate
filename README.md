@@ -4,5 +4,7 @@
 <img src="https://github.com/beingshahidali/flowmate/blob/main/images/main.gif" >
 <h2> Chat one-to-one</h2>
 <img src="https://github.com/beingshahidali/flowmate/blob/main/images/main2.gif" >
+<h2> Users</h2>
+<img src="https://github.com/beingshahidali/flowmate/blob/main/images/main3.gif" >
 
 
