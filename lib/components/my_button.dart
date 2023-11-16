@@ -6,6 +6,7 @@ class MyButton extends StatelessWidget {
   Color color;
    MyButton({super.key,required this.onTap, required this.text, required this.color});
 
+  
   @override
   Widget build(BuildContext context) {
     return Padding(
