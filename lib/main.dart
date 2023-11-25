@@ -23,7 +23,7 @@ void main() async{
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => AuthService()), // Replace with your actual AuthService
+        ChangeNotifierProvider(create: (context) => AuthService()), //provider : popular state management solution 
       ],
       child: MyApp(),
     ),
